@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import { Navigate } from "react-router-dom";
+import { useUser } from "./userContext";
 
 function NewPost() {
   const [user] = useUser();
@@ -14,16 +15,23 @@ function NewPost() {
   const handleNewPost = async (e) => {
     e.preventDefault();
 
-    if (!photo || !description) return <Navigate to={"/home"}></Navigate>;
+    if (!photo || !description) return setError("Faltan campos");
     const formData = new FormData();
     formData.append("description", description);
     formData.append("photo", photo);
 
     const res = await fetch("http://localhost:4000/posts", {
       method: "POST",
-      headers: { Authorization: `Bearer ${user.token}` },
+      headers: { Authorization: user },
       body: formData,
     });
+
+    if (res) {
+      setShow(false);
+      setDescription("");
+      setPhoto(null);
+      setError("");
+    }
   };
 
   const handleClose = () => {

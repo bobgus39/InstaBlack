@@ -6,15 +6,15 @@ export const useUser = () => useContext(UserContext);
 
 export function UserProvider({ children }) {
   const [user, setUser] = useState(() =>
-    JSON.parse(localStorage.getItem("session"))
+    JSON.parse(localStorage.getItem("Token"))
   );
 
   const setUserAndStorage = (newUser) => {
     setUser(newUser);
     if (newUser) {
-      localStorage.setItem("session", JSON.stringify(newUser));
+      localStorage.setItem("Token", JSON.stringify(newUser));
     } else {
-      localStorage.removeItem("session");
+      localStorage.removeItem("Token");
     }
   };
 

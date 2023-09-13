@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useUser } from "../UserContext";
+import { useUser } from "../userContext";
 
 function useFetch(url) {
   const [user] = useUser();
@@ -9,7 +9,7 @@ function useFetch(url) {
     () => async () => {
       const opts = {};
       if (user) {
-        opts.headers = { Authorization: "Bearer " + user.token };
+        opts.headers = { Authorization: user };
       }
       const res = await fetch(url, opts);
       const json = await res.json();

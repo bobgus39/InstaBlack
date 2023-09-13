@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { NavLink, Outlet, Navigate } from "react-router-dom";
-import { useUser } from "./UserContext";
+import { useUser } from "./userContext";
 
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
@@ -11,7 +11,7 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState();
-  if (user) return <Navigate to="/" />;
+  //
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,10 +24,11 @@ function Login() {
     if (!res.ok) {
       setError(data?.error || "Error al iniciar sesión");
     } else {
-      setUser(data.token);
-      console.log("token:", data.token);
+      setUser(data.data.token);
     }
   };
+
+  if (user) return <Navigate to="/" />;
 
   return (
     <>
