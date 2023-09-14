@@ -2,7 +2,7 @@ import NewPost from "./NewPost";
 import Posts from "./Posts";
 
 import { useUser } from "./userContext";
-import { NavLink } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 function Home() {
   const [user] = useUser();
@@ -10,7 +10,7 @@ function Home() {
   if (!user) return <Navigate to="/login" />;
   return (
     <div>
-      <NavLink to="/Search">Buscar</NavLink>
+      <NavLink to="/search">Buscar</NavLink>
       <NewPost />
       <Posts />
     </div>
