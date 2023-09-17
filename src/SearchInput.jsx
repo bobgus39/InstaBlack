@@ -7,11 +7,8 @@ function SearchInput() {
 
   const handleSearch = (e) => {
     e.preventDefault();
-    console.log("keyWord:", keyword);
-
-    // Perform any additional logic here if needed, but don't call hooks here.
   };
-  console.log("user", userPosts);
+
   return (
     <div>
       <input
@@ -21,7 +18,7 @@ function SearchInput() {
         onChange={(e) => setKeyword(e.target.value)}
       />
       <button onClick={handleSearch}>Buscar</button>
-      {userPosts && userPosts.status != "error" ? (
+      {userPosts && userPosts.status != "error" && keyword ? (
         <ul>
           {userPosts.data.map((user) => (
             <li key={user.id}>

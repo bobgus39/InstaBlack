@@ -25,6 +25,10 @@ function Login() {
       setError(data?.error || "Error al iniciar sesión");
     } else {
       setUser(data.data.token);
+      localStorage.setItem(
+        "Usuario",
+        JSON.stringify(data.data.tokenInfo.username)
+      );
     }
   };
 

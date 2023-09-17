@@ -1,8 +1,8 @@
-import NewPost from "./NewPost";
+import Header from "./Header";
 import Posts from "./Posts";
 
 import { useUser } from "./userContext";
-import { NavLink, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function Home() {
   const [user] = useUser();
@@ -10,8 +10,7 @@ function Home() {
   if (!user) return <Navigate to="/login" />;
   return (
     <div>
-      <NavLink to="/search">Buscar</NavLink>
-      <NewPost />
+      <Header />
       <Posts />
     </div>
   );

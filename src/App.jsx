@@ -14,6 +14,7 @@ import Home from "./Home";
 import Posts from "./Posts";
 import User from "./User";
 import SearchInput from "./SearchInput";
+import Profile from "./Profile";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,7 @@ const router = createBrowserRouter(
         <Route path="posts" element={<Posts />}></Route>
         <Route path="user" element={<User />}></Route>
         <Route path="search" element={<SearchInput />}></Route>
+        <Route path="profile" element={<Profile />}></Route>
       </Route>
     </>
   )

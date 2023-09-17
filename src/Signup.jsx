@@ -20,6 +20,8 @@ function Signup() {
       setError(data?.error || "Error de registro");
     } else {
       setUser(data);
+      localStorage.setItem("Usuario", JSON.stringify(data.username));
+      console.log(data);
     }
   };
 
