@@ -15,6 +15,8 @@ function Signup() {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ username, email, password }),
     });
+
+    //errores Hacerlos aquí sin realizar el submit con extension yup o joi
     const data = await res.json();
     if (!res.ok) {
       setError(data?.error || "Error de registro");

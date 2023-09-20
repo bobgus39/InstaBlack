@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { useUser } from "../userContext";
+import { useUser } from "../context/UserContext";
 
 function useFetch(url) {
   const [user] = useUser();

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { useSearchUser } from "./hooks/api";
+import { useSearchUser } from "../hooks/api";
+import { Link } from "react-router-dom";
 
 function SearchInput() {
   const [keyword, setKeyword] = useState("");
@@ -22,7 +23,9 @@ function SearchInput() {
         <ul>
           {userPosts.data.map((user) => (
             <li key={user.id}>
-              <h2>{user.username}</h2>
+              <Link to={`/profile/${user.username}`}>
+                <h2>{user.username}</h2>
+              </Link>
             </li>
           ))}
         </ul>

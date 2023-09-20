@@ -1,0 +1,85 @@
+function App() {
+  const [showModal, setShowModal] = useState(false);
+  const handleOpenModal = () => setShowModal(true);
+  const handleCloseModal = () => setShowModal(false);
+  return (
+    <Router>
+      <Header handleOpenModal={handleOpenModal} />
+      <Content>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/tweet/:id" element={<TweetPage />} />
+          <Route path="/user/:id" element={<UserPage />} />
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </Content>
+      <Footer handleOpenModal={handleOpenModal} />
+      {showModal && <Modal handleCloseModal={handleCloseModal} />}
+    </Router>
+  );
+}
+
+//Content
+import React from "react";
+export const Content = ({ children }) => {
+  return <section id="content">{children}</section>;
+};
+
+import React from "react";
+import { Loading } from "../components/Loading";
+import { ErrorMessage } from "../components/ErrorMessage";
+import { useParams } from "react-router-dom";
+import { useUser } from "../hooks/useUser";
+import { UserInfo } from "../components/UserInfo";
+import { TweetsList } from "../components/TweetsList";
+export const UserPage = () => {
+  // Hook que nos permite acceder a los parámetros de la URL
+  const { id } = useParams();
+  // Hook personalizado que nos permite obtener un usuario por su id
+  const { user, tweets, loading, error } = useUser(id);
+  return (
+    <>
+      <h2>User Page</h2>{" "}
+      <div className="user-page-container">
+        <UserInfo user={user} />{" "}
+        <TweetsList
+          className="user-page"
+          tweets={tweets}
+          loading={loading}
+          error={error}
+        />{" "}
+      </div>{" "}
+    </>
+  );
+};
+
+//separar las paginas de los componentes(homePage, postPage, userPage, register, not found page...)
+
+//creATEDaD CON FORMATdATE(CREATEAT)
+
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+import "dayjs/locale/es";
+dayjs.extend(relativeTime); // Personalizar los mensajes
+dayjs.locale("es", {
+  relativeTime: {
+    future: "en %s",
+    past: "hace %s",
+    s: "unos segundos",
+    m: "un minuto",
+    mm: "%d minutos",
+    h: "una hora",
+    hh: "%d horas",
+    d: "un día",
+    dd: "%d días",
+    M: "un mes",
+    MM: "%d meses",
+    y: "un año",
+    yy: "%d años",
+  },
+}); // Funcion que recibe la fecha de creacion y usa dayJs para formatearla
+export const formatDate = (date) => {
+  return dayjs(date).fromNow();
+};

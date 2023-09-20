@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { NavLink, Outlet, Navigate } from "react-router-dom";
-import { useUser } from "./userContext";
+import { useUser } from "../context/UserContext";
 
-import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+
+//hacerlo con una pagina aparte y la home sera la primera pagina
 
 function Login() {
   const [user, setUser] = useUser();

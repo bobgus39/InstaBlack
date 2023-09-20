@@ -1,6 +1,6 @@
 import SearchInput from "./SearchInput";
 import NewPost from "./NewPost";
-import Profile from "./Profile";
+import Profile from "../pages/Profile";
 import { NavLink } from "react-router-dom";
 
 function Header() {
