@@ -31,8 +31,9 @@ function App() {
           <Route index element={<Home />} />
           <Route path="posts" element={<Posts />} />
           <Route path="user" element={<User />} />
+
           <Route path="search" element={<SearchInput />} />
-          <Route path="profile" element={<Profile />} />
+          <Route path="profile/:keyword" element={<Profile />} />
         </Route>
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />

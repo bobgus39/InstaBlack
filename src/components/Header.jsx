@@ -1,6 +1,6 @@
 import SearchInput from "./SearchInput";
 import NewPost from "./NewPost";
-import Profile from "../pages/Profile";
+
 import { NavLink } from "react-router-dom";
 
 function Header() {
@@ -9,7 +9,9 @@ function Header() {
       <div>
         <SearchInput />
         <NewPost />
-        <NavLink to={"/profile"}>Perfil</NavLink>
+        <NavLink to={`/profile/${JSON.parse(localStorage.getItem("Usuario"))}`}>
+          Perfil
+        </NavLink>
       </div>
     </>
   );

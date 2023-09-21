@@ -1,16 +1,16 @@
 import { useProfile } from "../hooks/api";
 import Like from "../components/Like";
+import { useParams } from "react-router-dom";
 
 function Profile() {
-  //const username = url.pathname.split("/").pop();
-  //console.log("username:", username);
-  const { data, reload } = useProfile();
+  const { keyword } = useParams();
+  console.log("user", keyword);
+  const { data, reload } = useProfile(keyword);
 
   if (!data || !data.data[0]) {
     return <div>Cargando...</div>;
   }
 
-  console.log("user:", data);
   //condicional ternario para que
 
   return (
