@@ -1,36 +1,60 @@
 import { useProfile } from "../hooks/api";
 import Like from "../components/Like";
 import { useParams } from "react-router-dom";
+import { useUser } from "../context/UserContext";
+import { useState } from "react";
 
 function Profile() {
   const { keyword } = useParams();
-  console.log("user", keyword);
-  const { data, reload } = useProfile(keyword);
+  const [token] = useUser();
+  const { data: posts, reload } = useProfile(keyword);
+  const [error, setError] = useState("");
 
-  if (!data || !data.data[0]) {
+  if (!posts || !posts.data[0]) {
     return <div>Cargando...</div>;
   }
 
-  //condicional ternario para que
+  const handleLike = async (postId) => {
+    if (!token || !postId)
+      return setError("No puedes dar like sin registrarte");
+    const res = await fetch(`http://localhost:4000/posts/${postId}/likes`, {
+      method: "POST",
+      headers: { Authorization: token },
+    });
+    if (res.ok) {
+      setError("");
+
+      // Cargar datos actualizados después de dar like
+      const updatedData = await reload(); // Supongo que reload() obtiene los datos actualizados
+      if (updatedData) {
+        // Actualizar el estado con los datos actualizados
+        posts.data = updatedData;
+      }
+    }
+  };
 
   return (
     <div>
-      <h3>{data.data[0].id}</h3>
+      <h1>Publicaciones</h1>
       <ul>
-        {data.data.map((postUser) => (
-          <li key={postUser.id}>
-            <h2>{postUser.description}</h2>
-            <p>Usuario: {postUser.username}</p>
-            <img
-              src={`http://localhost:4000/${postUser.photo}`}
-              alt={`Imagen de ${postUser.username}`}
-            />
-            <p>
-              <Like /> {postUser.numLikes}
-            </p>
+        {posts.data.map((post) => (
+          <li key={post.id}>
+            <h2>{post.description}</h2>
+            <p>Usuario: {post.username}</p>
+            <label onDoubleClick={() => handleLike(post.id)}>
+              <img
+                src={`http://localhost:4000/${post.photo}`}
+                alt={`Imagen de ${post.username}`}
+              />
+            </label>
+            <label onClick={() => handleLike(post.id)}>
+              <Like />
+              {post.numLikes}
+            </label>
           </li>
         ))}
       </ul>
+      {error && <p className="error">{error}</p>}
     </div>
   );
 }

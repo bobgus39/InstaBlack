@@ -1,7 +1,7 @@
 import Like from "./Like";
 import { useHome } from "../hooks/api";
 import { useUser } from "../context/UserContext";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 function Posts() {
   const [token] = useUser(); // Token para la autorización
