@@ -1,8 +1,54 @@
-# React + Vite
+## InstaBlack
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Proyecto similar a instagram. Publicacion de fotos, likes, perfiles...
 
-Currently, two official plugins are available:
+## Table of Contents
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- [Demo](#demo)
+- [Capturas de Pantalla](#capturas-de-pantalla)
+- [Requisitos](#requisitos)
+- [Instalación](#instalación)
+- [Uso](#uso)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+- [Contribuir](#contribuir)
+- [Licencia](#licencia)
+
+## Demo
+
+enlace de demo
+
+## Capturas de Pantalla
+
+<img src='./public/foto_login.png' alt='login'/>
+
+## Requisitos
+
+- Node.js
+- React
+
+## Instalación
+
+1. Clona el repositorio:
+
+   git clone https://github.com/bobgus39/InstaBlack.git
+
+2. Ve al directorio del proyecto:
+
+cd tu-proyecto
+
+3. Instala las dependencias:
+
+npm install
+
+4. Uso
+
+npm run dev
+
+##estructura del proyecto
+
+src/ # Contiene tus archivos fuente
+├── main.js # Punto de entrada JavaScript
+└── main.css # Archivo CSS principal
+public/ # Archivos estáticos accesibles públicamente
+├── images/
+└── ...

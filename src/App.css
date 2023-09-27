@@ -67,3 +67,7 @@ ul {
     /* Estilos específicos para el encabezado si es necesario */
   }
 }
+
+.footer {
+  bottom: 0px;
+}

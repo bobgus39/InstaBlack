@@ -1,5 +1,5 @@
 .main {
-  display: grid;
+  display: flex;
 }
 
 .image {
@@ -9,20 +9,31 @@
 }
 
 .form {
+  position: fixed;
+  right: 500px;
+
   display: flex;
 
   flex-direction: column;
 
   gap: 3em;
 }
-@media (max-width: 800px) {
+@media (max-width: 880px) {
   .form {
-    width: 60%;
+    position: fixed;
+    left: 3em;
+    width: 40%;
+
     gap: 3em;
+  }
+
+  .register {
+    position: fixed;
+    bottom: 100px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
   .image {
     opacity: 0%;
   }

@@ -21,7 +21,7 @@ function useFetch(url) {
   useEffect(() => {
     reload();
 
-    const t = setInterval(reload, 30000);
+    const t = setInterval(reload, 3000);
     return () => clearInterval(t);
   }, [reload]);
 

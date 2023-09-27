@@ -1,7 +1,8 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import "dayjs/locale/es";
-dayjs.extend(relativeTime); // Personalizar los mensajes
+dayjs.extend(relativeTime);
+
 dayjs.locale("es", {
   relativeTime: {
     future: "en %s",
@@ -18,7 +19,11 @@ dayjs.locale("es", {
     y: "un año",
     yy: "%d años",
   },
-}); // Funcion que recibe la fecha de creacion y usa dayJs para formatearla
+});
+
+// Función para formatear la fecha
 export const formatDate = (date) => {
+  console.log(date);
+
   return dayjs(date).fromNow();
 };

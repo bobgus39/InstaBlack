@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { NavLink, Outlet, Navigate } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
 import "../App.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import { image, main, form } from "./Login.module.css";
+import { image, main, form, register } from "./Login.module.css";
 
 //hacerlo con una pagina aparte y la home sera la primera pagina
 
@@ -36,13 +36,19 @@ function Login() {
     }
   };
 
-  if (user) return <Navigate to="/" />;
+  //if (user) return <Navigate to="/" />;
 
   return (
     <main className={main}>
-      <header>
-        <h1>INSTABLACK</h1>
-      </header>
+      <div>{error && <p className="error">{error}</p>}</div>
+
+      <div className={register}>
+        <h3>¿No tienes cuenta?</h3>
+        <span>
+          <NavLink to="/signup">Registrarse</NavLink>
+        </span>
+        <Outlet></Outlet>
+      </div>
       <form className={form} onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Email</label>
@@ -67,18 +73,18 @@ function Login() {
             }}
           />
         </div>
-        <Button variant="primary" type="submit">
-          Entrar
-        </Button>
+        {user ? (
+          <NavLink className="nav-link" to={"/"}>
+            <Button variant="primary" type="submit">
+              Entrar
+            </Button>
+          </NavLink>
+        ) : (
+          <Button variant="primary" type="submit">
+            Entrar
+          </Button>
+        )}
       </form>
-      <div>
-        <h3>¿No tienes cuenta?</h3>
-        <span>
-          <NavLink to="/signup">Registrarse</NavLink>
-        </span>
-        <Outlet></Outlet>
-        {error && <p className="error">{error}</p>}
-      </div>
       <img
         className={image}
         src="../../public/foto_login.png"

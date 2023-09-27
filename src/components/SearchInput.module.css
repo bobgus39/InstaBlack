@@ -19,13 +19,14 @@
 }
 .liPhotos {
   height: 50px;
+
   display: flex;
   gap: 10px;
 }
 .img {
   height: 100%;
-  width: 50%;
-  border-radius: 0 5em;
+  width: 50px;
+  border-radius: 0 2em;
 }
 
 @media (max-width: 800px) {
@@ -41,16 +42,15 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 750px) {
   .main {
     position: fixed;
     margin-top: 3em;
-    top: -60px;
+    top: -50px;
     transition: top 0.3s;
     width: 100%;
     background-color: #ffffff;
     border-bottom: 1px solid #ccc;
-    overflow: scroll;
   }
 
   .hiddenMobile {

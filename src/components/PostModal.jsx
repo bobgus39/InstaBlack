@@ -1,7 +1,7 @@
 import React from "react";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { formatDate } from "../hooks/formatDate";
+import { formatDate } from "../helpers/formatDate";
 
 const PostModal = ({ isOpen, onClose, post }) => {
   if (!isOpen || !post) return null;

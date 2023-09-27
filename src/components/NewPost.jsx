@@ -4,6 +4,8 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
 import { useUser } from "../context/UserContext";
+import { useHome } from "../hooks/api";
+import { Navigate } from "react-router-dom";
 
 function NewPost() {
   const [user] = useUser();
@@ -32,6 +34,7 @@ function NewPost() {
       setPhoto(null);
       setError("");
     }
+    return <Navigate to={"/"}></Navigate>;
   };
 
   const handleClose = () => {

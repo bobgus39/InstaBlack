@@ -1,3 +1,8 @@
+.footer {
+  position: relative;
+  bottom: 0px;
+}
+
 @media (max-width: 800px) {
   .footerInit {
     position: absolute;

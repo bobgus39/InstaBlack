@@ -35,9 +35,6 @@ function Signup() {
   if (user) return <Navigate to={"/login"} />;
   return (
     <main className="main">
-      <header>
-        <h1>INSTABLACK</h1>
-      </header>
       <form className={form} onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Username:</label>

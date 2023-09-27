@@ -1,8 +1,16 @@
 import NewPost from "./NewPost";
-import { header, logoImage } from "./Header.module.css";
+import { header, logoImage, homeSmall } from "./Header.module.css";
 import { NavLink } from "react-router-dom";
-
+import { useUser } from "../context/UserContext";
+import { useHome } from "../hooks/api";
 function Header() {
+  const { reload } = useHome();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    reload();
+  };
+  const [user] = useUser();
   return (
     <>
       <div className={header}>
@@ -13,16 +21,33 @@ function Header() {
               alt="logo instagram"
               className={logoImage}
             ></img>
+            <img
+              className={homeSmall}
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHy4lSNDku-tlmSeRXn2ooV3WehweV_SieLg&usqp=CAU"
+              alt="home chiquito"
+            />
           </div>
         </NavLink>
 
-        <NewPost />
-        <NavLink
-          className="nav-link"
-          to={`/profile/${JSON.parse(localStorage.getItem("Usuario"))}`}
-        >
-          {JSON.parse(localStorage.getItem("Usuario"))}
-        </NavLink>
+        {user && <NewPost />}
+        {user ? (
+          <NavLink
+            className="nav-link"
+            to={`/profile/${JSON.parse(localStorage.getItem("Usuario"))}`}
+          >
+            {JSON.parse(localStorage.getItem("Usuario"))}
+          </NavLink>
+        ) : (
+          <NavLink className="nav-link" to={"/login"}>
+            Login
+          </NavLink>
+        )}
+
+        {user && (
+          <NavLink className="nav-link" to={"/login"} onClick={handleLogout}>
+            Logout
+          </NavLink>
+        )}
       </div>
     </>
   );

@@ -13,7 +13,9 @@
   margin-bottom: 5em;
   width: 100%;
 }
-
+.homeSmall {
+  opacity: 0%;
+}
 /* Estilos para pantallas con un ancho igual o menor a 800px */
 @media (max-width: 800px) {
   .header {
@@ -28,6 +30,7 @@
     flex-direction: row;
     justify-content: center; /* Centra los elementos horizontalmente */
     align-items: center;
+
     padding: 10px 0; /* Ajusta el relleno según tus preferencias */
     z-index: 100; /* Asegura que esté por encima de otros elementos */
   }
@@ -36,9 +39,17 @@
     margin-bottom: 0px;
     padding-right: 5em;
     height: 40px;
+    opacity: 0%;
   }
 
   .navLinks {
     display: none;
+  }
+  .homeSmall {
+    position: relative;
+    top: -1.2em;
+    left: 180px;
+    height: 40px;
+    opacity: 100%;
   }
 }

@@ -3,7 +3,7 @@ import Like from "../components/Like";
 import { NavLink, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
-import { formatDate } from "../hooks/formatDate";
+import { formatDate } from "../helpers/formatDate";
 
 function Profile() {
   const { keyword } = useParams();
