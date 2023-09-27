@@ -46,7 +46,7 @@ function NewPost() {
   return (
     <>
       <Button variant="primary" onClick={handleShow}>
-        Subir un post
+        +
       </Button>
 
       <Modal show={show} onHide={handleClose}>

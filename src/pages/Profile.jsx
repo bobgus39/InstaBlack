@@ -1,8 +1,9 @@
 import { useProfile } from "../hooks/api";
 import Like from "../components/Like";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
+import { formatDate } from "../hooks/formatDate";
 
 function Profile() {
   const { keyword } = useParams();
@@ -34,13 +35,13 @@ function Profile() {
   };
 
   return (
-    <div>
-      <h1>Publicaciones</h1>
+    <div className="profile">
       <ul>
         {posts.data.map((post) => (
           <li key={post.id}>
-            <h2>{post.description}</h2>
-            <p>Usuario: {post.username}</p>
+            <NavLink className="nav-link" to={`/profile/${post.username}`}>
+              <h2> {post.username}</h2>
+            </NavLink>
             <label onDoubleClick={() => handleLike(post.id)}>
               <img
                 src={`http://localhost:4000/${post.photo}`}
@@ -48,9 +49,27 @@ function Profile() {
               />
             </label>
             <label onClick={() => handleLike(post.id)}>
-              <Like />
-              {post.numLikes}
+              <Like liked={post.likedByMe} />
+              {post.numLikes}{" "}
+              <strong>
+                {post.numLikes <= 1
+                  ? `${
+                      post.likedUsernames === null
+                        ? "nadie"
+                        : post.likedUsernames
+                    } le ha dado me gusta`
+                  : `${post.likedUsernames.split(",")[0]} y ${
+                      post.numLikes - 1
+                    } más han dado me gusta`}
+              </strong>
             </label>
+            <p>
+              <NavLink className="nav-link" to={`/profile/${post.username}`}>
+                <strong>{post.username}:</strong>
+              </NavLink>
+              {post.description}
+            </p>
+            <p>{formatDate(post.createdAt)}</p>
           </li>
         ))}
       </ul>

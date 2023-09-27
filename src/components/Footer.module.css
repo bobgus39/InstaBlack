@@ -1,0 +1,19 @@
+@media (max-width: 800px) {
+  .footerInit {
+    position: absolute;
+    padding-left: 5em;
+    bottom: -70px;
+  }
+  .footer {
+    position: relative;
+    padding-left: 5em;
+    bottom: 60px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer {
+    position: relative;
+    bottom: 75px;
+  }
+}

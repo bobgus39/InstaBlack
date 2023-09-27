@@ -1,0 +1,29 @@
+.main {
+  display: grid;
+}
+
+.image {
+  position: fixed;
+  right: 100px;
+  height: 70%;
+}
+
+.form {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 3em;
+}
+@media (max-width: 800px) {
+  .form {
+    width: 60%;
+    gap: 3em;
+  }
+}
+
+@media (max-width: 600px) {
+  .image {
+    opacity: 0%;
+  }
+}

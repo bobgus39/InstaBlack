@@ -15,29 +15,42 @@ import User from "./User";
 import SearchInput from "./components/SearchInput";
 import Profile from "./pages/Profile";
 import Header from "./components/Header";
+import { Footer } from "./components/Footer";
 
 function App() {
   const pathElement = window.location.pathname;
 
   return (
-    <Router>
-      <div>
+    <Router className="container">
+      <div className="grid-container">
+        {pathElement === "/login" ||
+        pathElement === "/signup" ||
+        pathElement === "/profile/" ? null : (
+          <Header className="header"></Header>
+        )}
+
+        <Routes className="main">
+          <Route path="/" element={<Outlet />}>
+            <Route index element={<Home />} />
+            <Route path="posts" element={<Posts />} />
+            <Route path="user" element={<User />} />
+            <Route
+              path="search"
+              element={<SearchInput className="searchInput" />}
+            />
+
+            <Route path="profile/:keyword" element={<Profile />} />
+          </Route>
+
+          <Route path="login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
+        </Routes>
+
         {pathElement === "/login" || pathElement === "/signup" ? null : (
-          <Header></Header>
+          <SearchInput className="searchInput" />
         )}
       </div>
-      <Routes>
-        <Route path="/" element={<Outlet />}>
-          <Route index element={<Home />} />
-          <Route path="posts" element={<Posts />} />
-          <Route path="user" element={<User />} />
-
-          <Route path="search" element={<SearchInput />} />
-          <Route path="profile/:keyword" element={<Profile />} />
-        </Route>
-        <Route path="login" element={<Login />} />
-        <Route path="signup" element={<Signup />} />
-      </Routes>
+      <Footer className="footer"></Footer>
     </Router>
   );
 }

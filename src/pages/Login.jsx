@@ -2,8 +2,10 @@ import { useState } from "react";
 import { NavLink, Outlet, Navigate } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 
+import "../App.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
+import { image, main, form } from "./Login.module.css";
 
 //hacerlo con una pagina aparte y la home sera la primera pagina
 
@@ -37,11 +39,11 @@ function Login() {
   if (user) return <Navigate to="/" />;
 
   return (
-    <>
+    <main className={main}>
       <header>
         <h1>INSTABLACK</h1>
       </header>
-      <form onSubmit={handleSubmit}>
+      <form className={form} onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Email</label>
           <input
@@ -77,7 +79,12 @@ function Login() {
         <Outlet></Outlet>
         {error && <p className="error">{error}</p>}
       </div>
-    </>
+      <img
+        className={image}
+        src="../../public/foto_login.png"
+        alt="foto login"
+      />
+    </main>
   );
 }
 

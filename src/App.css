@@ -1,42 +1,69 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.grid-container {
+  display: grid;
+  grid-template-columns: 17.5% 62.5% 20%;
+  grid-template-rows: auto 1fr auto; /* Agrega un row para el footer */
+  grid-template-rows: 100vh; /* Ocupa el 100% de la altura de la pantalla */
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.header {
+  grid-column: 1;
+  grid-row: 1;
+  /* Estilos específicos para el encabezado si es necesario */
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.main {
+  grid-column: 2;
+  grid-row: 1;
+  /* Estilos específicos para el contenido principal si es necesario */
+}
+
+.searchInput {
+  grid-column: 3;
+  grid-row: 1;
+
+  /* Estilos específicos para el espacio vacío si es necesario */
+}
+
+ul {
+  list-style: none;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+}
+
+.custom-modal {
+  max-width: none; /* Elimina el límite de ancho del modal */
+  width: auto; /* Establece el ancho automático según el contenido */
+  margin: 0; /* Elimina cualquier margen del modal */
+}
+.profile {
+  position: relative;
+  bottom: 100px;
+}
+
+@media (max-width: 800px) {
+  .grid-container {
+    display: grid;
+    grid-template-columns: 100vh;
+    grid-template-rows: 17.5% 62.5% 20%; /* Ocupa el 100% de la altura de la pantalla */
   }
-  to {
-    transform: rotate(360deg);
+  .searchInput {
+    grid-column: 1;
+    grid-row: 1;
+
+    /* Estilos específicos para el espacio vacío si es necesario */
   }
-}
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+  .main {
+    grid-column: 1;
+    grid-row: 2;
+    /* Estilos específicos para el contenido principal si es necesario */
   }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+  .header {
+    grid-column: 1;
+    grid-row: 3;
+    /* Estilos específicos para el encabezado si es necesario */
+  }
 }
