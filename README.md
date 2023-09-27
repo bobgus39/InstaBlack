@@ -38,7 +38,7 @@ git clone https://github.com/bobgus39/InstaBlack.git
 
     npm install
 
-# Uso
+## Uso
 
     npm run dev
 
