@@ -10,8 +10,6 @@ Proyecto similar a instagram. Publicacion de fotos, likes, perfiles...
 - [Instalación](#instalación)
 - [Uso](#uso)
 - [Estructura del Proyecto](#estructura-del-proyecto)
-- [Contribuir](#contribuir)
-- [Licencia](#licencia)
 
 ## Demo
 
@@ -28,23 +26,23 @@ enlace de demo
 
 ## Instalación
 
-1. Clona el repositorio:
+# Clona el repositorio:
 
-   git clone https://github.com/bobgus39/InstaBlack.git
+git clone https://github.com/bobgus39/InstaBlack.git
 
-2. Ve al directorio del proyecto:
+# Ve al directorio del proyecto:
 
-cd tu-proyecto
+    cd tu-proyecto
 
-3. Instala las dependencias:
+# Instala las dependencias:
 
-npm install
+    npm install
 
-4. Uso
+# Uso
 
-npm run dev
+    npm run dev
 
-##estructura del proyecto
+## Estructura del proyecto
 
 src/ # Contiene tus archivos fuente
 ├── main.js # Punto de entrada JavaScript
