@@ -3,7 +3,7 @@ import { footer, footerInit } from "./Footer.module.css";
 
 export const Footer = () => {
   const pathElement = window.location.pathname;
-  console.log(pathElement);
+
   return (
     <footer
       className={

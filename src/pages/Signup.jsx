@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Navigate } from "react-router-dom";
+import { NavLink, Navigate } from "react-router-dom";
 
 import "../App.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -71,7 +71,11 @@ function Signup() {
             }}
           />
         </div>
-        <Button variant="primary">Registrarse</Button>
+
+        <Button type="submit" variant="primary">
+          Registrarse
+        </Button>
+
         {error && <p className="error">{error}</p>}
       </form>
     </main>

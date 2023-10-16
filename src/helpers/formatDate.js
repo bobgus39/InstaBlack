@@ -23,7 +23,5 @@ dayjs.locale("es", {
 
 // Función para formatear la fecha
 export const formatDate = (date) => {
-  console.log(date);
-
   return dayjs(date).fromNow();
 };
