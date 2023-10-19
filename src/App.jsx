@@ -22,12 +22,18 @@ function App() {
 
   return (
     <Router className="container">
-      <div className="grid-container">
-        {pathElement === "/login" ||
+      <div
+        className={
+          pathElement === "/login" || pathElement === "/signup"
+            ? ""
+            : "grid-container"
+        }
+      >
+        {/*pathElement === "/login" ||
         pathElement === "/signup" ||
         pathElement === "/profile/" ? null : (
           <Header className="header"></Header>
-        )}
+        )*/}
 
         <Routes className="main">
           <Route path="/" element={<Outlet />}>
@@ -46,9 +52,9 @@ function App() {
           <Route path="signup" element={<Signup />} />
         </Routes>
 
-        {pathElement === "/login" || pathElement === "/signup" ? null : (
+        {/*pathElement === "/login" || pathElement === "/signup" ? null : (
           <SearchInput className="searchInput" />
-        )}
+        )*/}
       </div>
       <Footer className="footer"></Footer>
     </Router>

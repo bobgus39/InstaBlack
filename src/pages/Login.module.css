@@ -18,6 +18,11 @@
 
   gap: 3em;
 }
+
+.register {
+  position: fixed;
+  bottom: 100px;
+}
 @media (max-width: 880px) {
   .form {
     position: fixed;
@@ -25,11 +30,6 @@
     width: 40%;
 
     gap: 3em;
-  }
-
-  .register {
-    position: fixed;
-    bottom: 100px;
   }
 }
 

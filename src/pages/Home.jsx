@@ -1,7 +1,8 @@
 import Posts from "../components/Posts";
+import Header from "../components/Header";
 
 import { useUser } from "../context/UserContext";
-import { Navigate } from "react-router-dom";
+//import { Navigate } from "react-router-dom";
 
 function Home() {
   const [user] = useUser();
@@ -9,6 +10,7 @@ function Home() {
   //if (!user) return <Navigate to="/login" />;
   return (
     <div>
+      <Header />
       <Posts />
     </div>
   );

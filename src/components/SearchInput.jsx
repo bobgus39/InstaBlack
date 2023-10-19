@@ -13,6 +13,7 @@ function SearchInput() {
   const { data: userPosts, reload } = useProfile(keyword);
   const navigate = useNavigate();
   const [showSearch, setShowSearch] = useState(false); // Estado para controlar la vista móvil
+  const [uniqueUsers, setUniqueUsers] = useState(new Set());
 
   useEffect(() => {
     let prevScrollY = window.scrollY;
@@ -52,6 +53,12 @@ function SearchInput() {
     navigate(`/profile/${e}`);
   };
 
+  useEffect(() => {
+    if (userPosts && userPosts.status !== "error") {
+      setUniqueUsers(new Set(userPosts.data.map((user) => user.username)));
+    }
+  }, [userPosts]);
+
   return (
     <div className={main}>
       {showSearch && (
@@ -69,13 +76,13 @@ function SearchInput() {
           {userPosts && userPosts.status !== "error" && keyword ? (
             <>
               <ul className={ul}>
-                {userPosts.data.map((user) => (
-                  <li key={user.id}>
+                {Array.from(uniqueUsers).map((username) => (
+                  <li key={username}>
                     <Button
                       variant="light"
-                      onClick={() => handleSearch(user.username)}
+                      onClick={() => handleSearch(username)}
                     >
-                      {user.username}
+                      {username}
                     </Button>
                   </li>
                 ))}

@@ -3,11 +3,16 @@
   bottom: -500px;
 }
 
+.initFooter {
+  position: fixed;
+  bottom: 20px;
+}
+
 @media (max-width: 800px) {
-  .footerInit {
-    position: absolute;
+  .initFooter {
+    position: fixed;
     padding-left: 5em;
-    bottom: -70px;
+    bottom: -140px;
   }
   .footer {
     position: relative;

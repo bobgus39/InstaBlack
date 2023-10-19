@@ -4,16 +4,13 @@ import { NavLink, useParams } from "react-router-dom";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
 import { formatDate } from "../helpers/formatDate";
+import Header from "../components/Header";
 
 function Profile() {
   const { keyword } = useParams();
   const [token] = useUser();
   const { data: posts, reload } = useProfile(keyword);
   const [error, setError] = useState("");
-
-  if (!posts || !posts.data[0]) {
-    return <div>Cargando...</div>;
-  }
 
   const handleLike = async (postId) => {
     if (!token || !postId)
@@ -34,47 +31,57 @@ function Profile() {
     }
   };
 
+  if (!posts) {
+    return <div>Cargando...</div>;
+  }
+  if (!posts.data || posts.data.length === 0) {
+    return <div>No posts available</div>;
+  }
+
   return (
-    <div className="profile">
-      <ul>
-        {posts.data.map((post) => (
-          <li key={post.id}>
-            <NavLink className="nav-link" to={`/profile/${post.username}`}>
-              <h2> {post.username}</h2>
-            </NavLink>
-            <label onDoubleClick={() => handleLike(post.id)}>
-              <img
-                src={`http://localhost:4000/${post.photo}`}
-                alt={`Imagen de ${post.username}`}
-              />
-            </label>
-            <label onClick={() => handleLike(post.id)}>
-              <Like liked={post.likedByMe} />
-              {post.numLikes}{" "}
-              <strong>
-                {post.numLikes <= 1
-                  ? `${
-                      post.likedUsernames === null
-                        ? "nadie"
-                        : post.likedUsernames
-                    } le ha dado me gusta`
-                  : `${post.likedUsernames.split(",")[0]} y ${
-                      post.numLikes - 1
-                    } más han dado me gusta`}
-              </strong>
-            </label>
-            <p>
+    <>
+      <Header />
+      <div className="profile">
+        <ul>
+          {posts.data.map((post) => (
+            <li key={post.id}>
               <NavLink className="nav-link" to={`/profile/${post.username}`}>
-                <strong>{post.username}:</strong>
+                <h2> {post.username}</h2>
               </NavLink>
-              {post.description}
-            </p>
-            <p>{formatDate(post.createdAt)}</p>
-          </li>
-        ))}
-      </ul>
-      {error && <p className="error">{error}</p>}
-    </div>
+              <label onDoubleClick={() => handleLike(post.id)}>
+                <img
+                  src={`http://localhost:4000/${post.photo}`}
+                  alt={`Imagen de ${post.username}`}
+                />
+              </label>
+              <label onClick={() => handleLike(post.id)}>
+                <Like liked={post.likedByMe} />
+                {post.numLikes}{" "}
+                <strong>
+                  {post.numLikes <= 1
+                    ? `${
+                        post.likedUsernames === null
+                          ? "nadie"
+                          : post.likedUsernames
+                      } le ha dado me gusta`
+                    : `${post.likedUsernames.split(",")[0]} y ${
+                        post.numLikes - 1
+                      } más han dado me gusta`}
+                </strong>
+              </label>
+              <p>
+                <NavLink className="nav-link" to={`/profile/${post.username}`}>
+                  <strong>{post.username}:</strong>
+                </NavLink>
+                {post.description}
+              </p>
+              <p>{formatDate(post.createdAt)}</p>
+            </li>
+          ))}
+        </ul>
+        {error && <p className="error">{error}</p>}
+      </div>
+    </>
   );
 }
 

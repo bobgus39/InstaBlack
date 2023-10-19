@@ -33,6 +33,7 @@ function Login() {
         "Usuario",
         JSON.stringify(data.data.tokenInfo.username)
       );
+      window.location.href = "/";
     }
   };
 
@@ -73,17 +74,11 @@ function Login() {
             }}
           />
         </div>
-        {user ? (
-          <NavLink className="nav-link" to={"/"}>
-            <Button variant="primary" type="submit">
-              Entrar
-            </Button>
-          </NavLink>
-        ) : (
+        {
           <Button variant="primary" type="submit">
             Entrar
           </Button>
-        )}
+        }
       </form>
       <img
         className={image}
