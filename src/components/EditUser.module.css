@@ -1,0 +1,27 @@
+.editMain {
+  position: absolute;
+  width: 120px;
+  text-align: right;
+  position: fixed;
+  top: 50px;
+  right: 5px;
+  background-color: white;
+  border-radius: 10%;
+}
+
+.noEditMain {
+  opacity: 0%;
+  height: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+@media (max-width: 860px) {
+  .editMain {
+    width: 100px;
+  }
+}

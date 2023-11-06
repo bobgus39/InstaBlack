@@ -1,7 +1,15 @@
 import { useState, useEffect } from "react";
 import { useProfile } from "../hooks/api";
 import { useNavigate } from "react-router-dom";
-import { input, ul, liPhotos, img, main } from "./SearchInput.module.css";
+import {
+  input,
+  ul,
+  liPhotos,
+  img,
+  main,
+  error,
+  hiddenBtn,
+} from "./SearchInput.module.css";
 import Button from "react-bootstrap/Button";
 
 import PostModal from "./PostModal";
@@ -103,9 +111,14 @@ function SearchInput() {
           ) : !keyword ? (
             "¿A quién quieres encontrar?"
           ) : (
-            <p>{userPosts.message}</p>
+            <p className={error}>{userPosts.message}</p>
           )}
-          <label onClick={() => setShowSearch(false)}>Ocultar x</label>
+          <label
+            className={keyword ? hiddenBtn : ""}
+            onClick={() => setShowSearch(false)}
+          >
+            Ocultar x
+          </label>
         </>
       )}
 

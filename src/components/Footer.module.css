@@ -1,11 +1,13 @@
 .footer {
-  position: relative;
-  bottom: -500px;
+  position: inherit;
+  left: 250px;
+  top: 100vh;
+  bottom: 0px;
 }
 
 .initFooter {
   position: fixed;
-  bottom: 20px;
+  bottom: 0px;
 }
 
 @media (max-width: 800px) {
@@ -17,13 +19,5 @@
   .footer {
     position: relative;
     padding-left: 5em;
-    bottom: 60px;
-  }
-}
-
-@media (max-width: 600px) {
-  .footer {
-    position: relative;
-    bottom: 75px;
   }
 }

@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { useUser } from "../context/UserContext";
+import { Footer } from "../components/Footer";
 
 import "../App.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Button from "react-bootstrap/Button";
-import { image, main, form, register } from "./Login.module.css";
+import { image, main, form, register, err } from "./Login.module.css";
 
 //hacerlo con una pagina aparte y la home sera la primera pagina
 
@@ -15,7 +16,6 @@ function Login() {
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState();
-  //
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,10 +25,12 @@ function Login() {
       body: JSON.stringify({ email, password }),
     });
     const data = await res.json();
+    console.log("data", data.data);
     if (!res.ok) {
-      setError(data?.error || "Error al iniciar sesión");
+      setError(data?.message || "Error al iniciar sesión");
     } else {
       setUser(data.data.token);
+      localStorage.setItem("userId", JSON.stringify(data.data.tokenInfo.id));
       localStorage.setItem(
         "Usuario",
         JSON.stringify(data.data.tokenInfo.username)
@@ -41,15 +43,6 @@ function Login() {
 
   return (
     <main className={main}>
-      <div>{error && <p className="error">{error}</p>}</div>
-
-      <div className={register}>
-        <h3>¿No tienes cuenta?</h3>
-        <span>
-          <NavLink to="/signup">Registrarse</NavLink>
-        </span>
-        <Outlet></Outlet>
-      </div>
       <form className={form} onSubmit={handleSubmit}>
         <div>
           <label className="form-label">Email</label>
@@ -64,7 +57,7 @@ function Login() {
           />
         </div>
         <div>
-          <label className="form-label">Contraseña</label>
+          <label className="form-label">Password</label>
           <input
             type="password"
             className="form-control"
@@ -74,17 +67,32 @@ function Login() {
             }}
           />
         </div>
+
         {
           <Button variant="primary" type="submit">
             Entrar
           </Button>
         }
       </form>
+
+      {error ? (
+        <p className={err}>{error}</p>
+      ) : (
+        <div className={register}>
+          <h3>¿No tienes cuenta?</h3>
+          <span>
+            <NavLink to="/signup">Registrarse</NavLink>
+          </span>
+          <Outlet></Outlet>
+        </div>
+      )}
+
       <img
         className={image}
         src="../../public/foto_login.png"
         alt="foto login"
       />
+      <Footer></Footer>
     </main>
   );
 }

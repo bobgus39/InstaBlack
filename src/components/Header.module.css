@@ -6,14 +6,13 @@
   display: flex;
   flex-direction: column;
 
-  gap: 3em;
+  gap: 1em;
 }
 .noHeader {
   opacity: 0%;
 }
 
 .logoImage {
-  margin-bottom: 5em;
   width: 100%;
 }
 .homeSmall {
@@ -21,12 +20,12 @@
 }
 
 /* Estilos para pantallas con un ancho igual o menor a 800px */
-@media (max-width: 800px) {
+@media (max-width: 980px) {
   .header {
     position: fixed;
     bottom: 0;
     left: 0;
-    height: 10%;
+    height: 8%;
     width: 100%;
     background-color: #ffffff; /* Cambia el color de fondo según tus preferencias */
     border-top: 1px solid #ccc; /* Agrega un borde superior si lo deseas */

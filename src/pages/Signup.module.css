@@ -1,8 +1,17 @@
 .form {
   position: fixed;
   top: 6em;
+  margin-left: 18em;
+  width: 18em;
   display: flex;
   flex-direction: column;
 
   gap: 2em;
+}
+
+@media (max-width: 880px) {
+  .form {
+    position: fixed;
+    margin-left: 9em;
+  }
 }

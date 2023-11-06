@@ -23,14 +23,17 @@ function Signup() {
 
     //errores Hacerlos aquí sin realizar el submit con extension yup o joi
     const data = await res.json();
+
     if (!res.ok) {
-      setError(data?.error || "Error de registro");
+      setError(data?.message || "Error de registro");
     } else {
       setUser(data);
       localStorage.setItem("Usuario", JSON.stringify(data.username));
       console.log(data);
     }
   };
+
+  //regist
 
   if (user) return <Navigate to={"/login"} />;
   return (

@@ -2,7 +2,7 @@ import Like from "./Like";
 import { useHome } from "../hooks/api";
 import { useUser } from "../context/UserContext";
 import { useState } from "react";
-import { postsClass, image } from "./PostsClass.module.css";
+import { postsClass, image, err, li } from "./PostsClass.module.css";
 import { NavLink } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { formatDate } from "../helpers/formatDate";
@@ -47,11 +47,11 @@ function Posts() {
   };
 
   if (!posts) {
-    return <div>Loading...</div>; // Mostrar un mensaje de carga mientras se obtienen los datos.
+    return <div className={err}>Loading...</div>; // Mostrar un mensaje de carga mientras se obtienen los datos.
   }
 
   if (!posts.data || posts.data.length === 0) {
-    return <div>No posts available</div>;
+    return <div className={err}>No posts available</div>;
   }
 
   return (
@@ -70,19 +70,35 @@ function Posts() {
         </NavLink>
         <ul>
           {posts.data.map((post) => (
-            <li key={post.id}>
+            <li key={post.id} className={li}>
               <NavLink className="nav-link" to={`/profile/${post.username}`}>
-                <h4> {post.username}</h4>
+                <h4>
+                  {" "}
+                  <img
+                    className="imgProfile"
+                    src={`http://localhost:4000/${post.avatar}`}
+                    alt={`Imagen de ${post.username}`}
+                  />{" "}
+                  {post.username}
+                </h4>
               </NavLink>
-              <label onDoubleClick={() => handleLike(post.id)}>
-                <img
-                  src={`http://localhost:4000/${post.photo}`}
-                  alt={`Imagen de ${post.username}`}
-                />
-              </label>
+              {post.username != "bot1Black" ? (
+                <label onDoubleClick={() => handleLike(post.id)}>
+                  <img
+                    src={`http://localhost:4000/${post.photo}`}
+                    alt={`Imagen de ${post.username}`}
+                  />
+                </label>
+              ) : (
+                <label onDoubleClick={() => handleLike(post.id)}>
+                  <img
+                    src={`http://localhost:4000/${post.avatar}`}
+                    alt={`Imagen de ${post.username}`}
+                  />
+                </label>
+              )}
               <label onClick={() => handleLike(post.id)}>
-                <Like liked={post.likedByMe} />
-                {post.numLikes}{" "}
+                <Like liked={post.likedByMe} />{" "}
                 <strong>
                   {post.numLikes <= 1
                     ? `${

@@ -56,7 +56,6 @@ function App() {
           <SearchInput className="searchInput" />
         )*/}
       </div>
-      <Footer className="footer"></Footer>
     </Router>
   );
 }

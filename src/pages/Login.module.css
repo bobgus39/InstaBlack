@@ -21,19 +21,28 @@
 
 .register {
   position: fixed;
+  right: 500px;
   bottom: 100px;
+}
+
+.err {
+  color: red;
+  position: relative;
+  left: 10em;
+  bottom: 5em;
 }
 @media (max-width: 880px) {
   .form {
     position: fixed;
-    left: 3em;
+    left: 9em;
     width: 40%;
 
     gap: 3em;
   }
-}
-
-@media (max-width: 700px) {
+  .register {
+    left: 9em;
+    width: 40%;
+  }
   .image {
     opacity: 0%;
   }

@@ -1,17 +1,25 @@
 import NewPost from "./NewPost";
+import env from "../helpers/useEnv";
 import { header, logoImage, homeSmall, noHeader } from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { useUser } from "../context/UserContext";
-//import { useHome } from "../hooks/api";
+import { useUserId } from "../hooks/api";
+
 function Header() {
   const pathElement = window.location.pathname;
   const [user] = useUser();
 
-  //const { reload } = useHome();
+  const userId = JSON.parse(localStorage.getItem("userId"));
 
+  const { data: userDates, reload } = useUserId(userId);
   const handleLogout = () => {
     localStorage.clear();
   };
+  if (user) {
+    if (!userDates || userDates.status != "ok") {
+      return <div>cargando...</div>;
+    }
+  }
 
   return (
     <>
@@ -39,12 +47,20 @@ function Header() {
 
         {user && <NewPost />}
         {user ? (
-          <Link
-            className="nav-link"
-            to={`/profile/${JSON.parse(localStorage.getItem("Usuario"))}`}
-          >
-            {JSON.parse(localStorage.getItem("Usuario"))}
-          </Link>
+          <>
+            <Link
+              className="nav-link"
+              to={`/profile/${JSON.parse(localStorage.getItem("Usuario"))}`}
+            >
+              <img
+                className="imgProfile"
+                src={`${env}${userDates.data.avatar}`}
+                alt={`Imagen de ${userDates.data.username}`}
+              />
+              {"  "}
+              {JSON.parse(localStorage.getItem("Usuario"))}
+            </Link>
+          </>
         ) : (
           <Link className="nav-link" to={"/login"}>
             Login

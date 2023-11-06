@@ -5,12 +5,14 @@ import { useUser } from "../context/UserContext";
 import { useState } from "react";
 import { formatDate } from "../helpers/formatDate";
 import Header from "../components/Header";
+import EditUser from "../components/EditUser";
 
 function Profile() {
   const { keyword } = useParams();
   const [token] = useUser();
   const { data: posts, reload } = useProfile(keyword);
   const [error, setError] = useState("");
+  const username = JSON.parse(localStorage.getItem("Usuario"));
 
   const handleLike = async (postId) => {
     if (!token || !postId)
@@ -23,7 +25,7 @@ function Profile() {
       setError("");
 
       // Cargar datos actualizados después de dar like
-      const updatedData = await reload(); // Supongo que reload() obtiene los datos actualizados
+      const updatedData = await reload();
       if (updatedData) {
         // Actualizar el estado con los datos actualizados
         posts.data = updatedData;
@@ -44,19 +46,34 @@ function Profile() {
       <div className="profile">
         <ul>
           {posts.data.map((post) => (
-            <li key={post.id}>
+            <li key={post.id} className="photoProfileLi">
               <NavLink className="nav-link" to={`/profile/${post.username}`}>
-                <h2> {post.username}</h2>
+                <h4>
+                  <img
+                    className="imgProfile"
+                    src={`http://localhost:4000/${post.avatar}`}
+                    alt={`Imagen de ${post.username}`}
+                  />{" "}
+                  {post.username}{" "}
+                </h4>
               </NavLink>
-              <label onDoubleClick={() => handleLike(post.id)}>
-                <img
-                  src={`http://localhost:4000/${post.photo}`}
-                  alt={`Imagen de ${post.username}`}
-                />
-              </label>
+              {post.username != "bot1Black" ? (
+                <label onDoubleClick={() => handleLike(post.id)}>
+                  <img
+                    src={`http://localhost:4000/${post.photo}`}
+                    alt={`Imagen de ${post.username}`}
+                  />
+                </label>
+              ) : (
+                <label onDoubleClick={() => handleLike(post.id)}>
+                  <img
+                    src={`http://localhost:4000/${post.avatar}`}
+                    alt={`Imagen de ${post.username}`}
+                  />
+                </label>
+              )}
               <label onClick={() => handleLike(post.id)}>
-                <Like liked={post.likedByMe} />
-                {post.numLikes}{" "}
+                <Like liked={post.likedByMe} />{" "}
                 <strong>
                   {post.numLikes <= 1
                     ? `${
@@ -81,6 +98,7 @@ function Profile() {
         </ul>
         {error && <p className="error">{error}</p>}
       </div>
+      {username === posts.data[0].username ? <EditUser /> : " "}
     </>
   );
 }
